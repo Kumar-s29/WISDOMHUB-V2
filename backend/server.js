@@ -2,10 +2,14 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import "dotenv/config";
+import connectDB from "./config/mongodb.js";
+
+//db config
 
 //app config
 const app = express();
 const port = process.env.PORT || 4000;
+connectDB();
 
 //middlewares
 app.use(express.json());
