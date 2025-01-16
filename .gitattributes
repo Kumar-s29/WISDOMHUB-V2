@@ -1,0 +1,14 @@
+# Ensure all text files are normalized to LF
+* text=auto
+
+# Specific file types with LF
+*.js   text eol=lf
+*.css  text eol=lf
+*.html text eol=lf
+*.json text eol=lf
+*.env  text eol=lf
+
+# Keep binary files as-is
+*.png  binary
+*.jpg  binary
+*.exe  binary
