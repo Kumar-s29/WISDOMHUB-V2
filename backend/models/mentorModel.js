@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const doctorSchema = new mongoose.Schema(
+const mentorSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
@@ -19,6 +19,6 @@ const doctorSchema = new mongoose.Schema(
   { minimize: false }
 );
 
-const doctorModel =
-  mongoose.models.doctor || mongoose.model("Doctor", doctorSchema);
-export default doctorModel;
+const mentorModel =
+  mongoose.models.mentor || mongoose.model("Mentor", mentorSchema);
+export default mentorModel;

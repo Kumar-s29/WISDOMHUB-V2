@@ -2,13 +2,13 @@ import jwt from "jsonwebtoken";
 
 // Doctor authentication middleware
 
-const authDoctor = async (req, res, next) => {
+const authMentor = async (req, res, next) => {
   try {
     const { dtoken } = req.headers;
     if (!dtoken) return res.status(400).json({ msg: "Invalid Authentication" });
     const token_decode = jwt.verify(dtoken, process.env.JWT_SECRET);
 
-    req.body.docId = token_decode.id;
+    req.body.menId = token_decode.id;
 
     next();
   } catch (error) {
@@ -16,4 +16,4 @@ const authDoctor = async (req, res, next) => {
   }
 };
 
-export default authDoctor;
+export default authMentor;

@@ -1,12 +1,12 @@
 import validator from "validator";
 import bycrypt from "bcryptjs";
 import { v2 as cloudinary } from "cloudinary";
-import doctorModel from "../models/doctorModel.js";
+import mentorModel from "../models/mentorModel.js";
 import jwt from "jsonwebtoken";
 import appointmentModel from "../models/appointmentModel.js";
 import userModel from "../models/userModel.js";
-//api for adding doctor
-const addDoctor = async (req, res) => {
+//api for adding mentor
+const addMentor = async (req, res) => {
   try {
     const {
       name,
@@ -21,7 +21,7 @@ const addDoctor = async (req, res) => {
     } = req.body;
     const imageFile = req.file;
 
-    //checking for all data to add doctor
+    //checking for all data to add mentor
     if (
       !name ||
       !email ||
@@ -51,7 +51,7 @@ const addDoctor = async (req, res) => {
         .json({ msg: "Password length should be atleast 8 characters" });
     }
 
-    //hashing doctor password
+    //hashing mentor password
     const salt = await bycrypt.genSalt(10);
     const hashedPassword = await bycrypt.hash(password, salt);
 
@@ -61,7 +61,7 @@ const addDoctor = async (req, res) => {
     });
     const imageUrl = uploadImage.secure_url;
 
-    const doctorData = {
+    const mentorData = {
       name,
       email,
       image: imageUrl,
@@ -74,9 +74,9 @@ const addDoctor = async (req, res) => {
       address: JSON.parse(address),
       date: Date.now(),
     };
-    const newDoctor = new doctorModel(doctorData);
-    await newDoctor.save();
-    res.status(200).json({ msg: "Doctor added successfully" });
+    const newMentor = new mentorModel(mentorData);
+    await newMentor.save();
+    res.status(200).json({ msg: "Mentor added successfully" });
   } catch (err) {
     console.error(err.message);
     res.status(500).json({ msg: err.message });
@@ -104,11 +104,11 @@ const loginAdmin = async (req, res) => {
   }
 };
 
-//api to getall doctors list for admin panel
-const getDoctors = async (req, res) => {
+//api to getall mentors list for admin panel
+const getMentors = async (req, res) => {
   try {
-    const doctors = await doctorModel.find({}).select("-password");
-    res.status(200).json(doctors);
+    const mentors = await mentorModel.find({}).select("-password");
+    res.status(200).json(mentors);
   } catch (error) {
     console.error(error.message);
     res.status(500).json({ msg: error.message });
@@ -135,14 +135,14 @@ const appointmentCancel = async (req, res) => {
     await appointmentModel.findByIdAndUpdate(appointmentId, {
       cancelled: true,
     });
-    // releasing doctor slot
-    const { doctId, slotDate, slotTime } = appointmentData;
-    const doctorData = await doctorModel.findById(doctId);
-    let slots_booked = doctorData.slots_booked;
+    // releasing mentor slot
+    const { menId, slotDate, slotTime } = appointmentData;
+    const mentorData = await mentorModel.findById(menId);
+    let slots_booked = mentorData.slots_booked;
     slots_booked[slotDate] = slots_booked[slotDate].filter(
       (e) => e !== slotTime
     );
-    await doctorModel.findByIdAndUpdate(docId, { slots_booked });
+    await mentorModel.findByIdAndUpdate(menId, { slots_booked });
     res.json({ success: true, message: "Appointment Cancelled" });
   } catch (error) {
     return res.status(500).json({ message: error.message });
@@ -153,12 +153,12 @@ const appointmentCancel = async (req, res) => {
 
 const adminDashboard = async (req, res) => {
   try {
-    const doctors = await doctorModel.find({});
+    const mentors = await mentorModel.find({});
     const users = await userModel.find({});
     const appointments = await appointmentModel.find({});
 
     const dashData = {
-      doctors: doctors.length,
+      mentors: mentors.length,
       appointments: appointments.length,
       patients: users.length,
       latestAppointments: appointments.reverse().slice(0, 5),
@@ -169,9 +169,9 @@ const adminDashboard = async (req, res) => {
   }
 };
 export {
-  addDoctor,
+  addMentor,
   loginAdmin,
-  getDoctors,
+  getMentors,
   appointmentsAdmin,
   appointmentCancel,
   adminDashboard,

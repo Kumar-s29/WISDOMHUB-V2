@@ -1,25 +1,25 @@
 import express from "express";
 import {
   appointmentComplete,
-  appointmentsDoctor,
-  doctorDashboard,
-  doctorList,
-  doctorProfile,
-  loginDoctor,
-  updateDoctorProfile,
-} from "../controllers/doctorController.js";
-import authDoctor from "../middlewares/authDoctor.js";
+  appointmentsMentor,
+  mentorDashboard,
+  mentorList,
+  mentorProfile,
+  loginMentor,
+  updateMentorProfile,
+} from "../controllers/mentorController.js";
+import authMentor from "../middlewares/authMentor.js";
 import { appointmentCancel } from "../controllers/adminController.js";
 
-const doctorRouter = express.Router();
+const mentorRouter = express.Router();
 
-doctorRouter.get("/list", doctorList);
-doctorRouter.post("/login", loginDoctor);
-doctorRouter.get("/appointments", authDoctor, appointmentsDoctor);
-doctorRouter.post("/complete-appointment", authDoctor, appointmentComplete);
-doctorRouter.post("/cancel-appointment", authDoctor, appointmentCancel);
-doctorRouter.get("/dashboard", authDoctor, doctorDashboard);
-doctorRouter.get("/profile", authDoctor, doctorProfile);
-doctorRouter.post("/update-profile", authDoctor, updateDoctorProfile);
+mentorRouter.get("/list", mentorList);
+mentorRouter.post("/login", loginMentor);
+mentorRouter.get("/appointments", authMentor, appointmentsMentor);
+mentorRouter.post("/complete-appointment", authMentor, appointmentComplete);
+mentorRouter.post("/cancel-appointment", authMentor, appointmentCancel);
+mentorRouter.get("/dashboard", authMentor, mentorDashboard);
+mentorRouter.get("/profile", authMentor, mentorProfile);
+mentorRouter.post("/update-profile", authMentor, updateMentorProfile);
 
-export default doctorRouter;
+export default mentorRouter;

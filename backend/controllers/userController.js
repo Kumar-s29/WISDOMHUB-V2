@@ -3,9 +3,9 @@ import bcrypt from "bcryptjs";
 import userModel from "../models/userModel.js";
 import jwt from "jsonwebtoken";
 import { v2 as cloudinary } from "cloudinary";
-import doctorModel from "../models/doctorModel.js";
 import appointmentModel from "../models/appointmentModel.js";
 import razorpay from "razorpay";
+import mentorModel from "../models/mentorModel.js";
 // api to register a user
 
 const registerUser = async (req, res) => {
@@ -125,15 +125,15 @@ const updateUserProfile = async (req, res) => {
 // api to book appiontment
 const bookAppointment = async (req, res) => {
   try {
-    const { userId, docId, slotDate, slotTime } = req.body;
-    const docData = await doctorModel.findById(docId).select("-password");
-    if (!docData.available) {
+    const { userId, menId, slotDate, slotTime } = req.body;
+    const menData = await mentorModel.findById(menId).select("-password");
+    if (!menData.available) {
       return res.json({
         success: false,
-        message: "doctor not Available",
+        message: "Mentor not Available",
       });
     }
-    let slots_booked = docData.slots_booked;
+    let slots_booked = menData.slots_booked;
 
     // checking for slots availability
     if (slots_booked[slotDate]) {
@@ -151,14 +151,14 @@ const bookAppointment = async (req, res) => {
     }
     const userData = await userModel.findById(userId).select("-password");
 
-    delete docData.slots_booked;
+    delete menData.slots_booked;
 
     const appointmentData = {
       userId,
-      docId,
+      menId,
       userData,
-      docData,
-      amount: docData.fees,
+      menData,
+      amount: menData.fees,
       slotTime,
       slotDate,
       date: Date.now(),
@@ -167,8 +167,8 @@ const bookAppointment = async (req, res) => {
     const newAppointment = new appointmentModel(appointmentData);
     await newAppointment.save();
 
-    //save new slots data in docData
-    await doctorModel.findByIdAndUpdate(docId, { slots_booked });
+    //save new slots data in menData
+    await mentorModel.findByIdAndUpdate(menId, { slots_booked });
     res.json({
       success: true,
       messsage: "Appointment Booked",
@@ -203,14 +203,14 @@ const cancelAppointment = async (req, res) => {
     await appointmentModel.findByIdAndUpdate(appointmentId, {
       cancelled: true,
     });
-    // releasing doctor slot
-    const { doctId, slotDate, slotTime } = appointmentData;
-    const doctorData = await doctorModel.findById(doctId);
-    let slots_booked = doctorData.slots_booked;
+    // releasing mentor slot
+    const { menId, slotDate, slotTime } = appointmentData;
+    const mentorData = await mentorModel.findById(menId);
+    let slots_booked = mentorData.slots_booked;
     slots_booked[slotDate] = slots_booked[slotDate].filter(
       (e) => e !== slotTime
     );
-    await doctorModel.findByIdAndUpdate(docId, { slots_booked });
+    await mentorModel.findByIdAndUpdate(menId, { slots_booked });
     res.json({ success: true, message: "Appointment Cancelled" });
   } catch (error) {
     return res.status(500).json({ message: error.message });

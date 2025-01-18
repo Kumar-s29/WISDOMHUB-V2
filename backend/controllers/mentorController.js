@@ -1,15 +1,15 @@
 import { json } from "express";
-import doctorModel from "../models/doctorModel.js";
+import mentorModel from "../models/mentorModel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import appointmentModel from "../models/appointmentModel.js";
 
 const changeAvailability = async (req, res) => {
   try {
-    const { docId } = req.body;
-    const docData = await doctorModel.findById(docId);
-    await doctorModel.findByIdAndUpdate(docId, {
-      available: !docData.available,
+    const { menId } = req.body;
+    const menData = await mentorModel.findById(menId);
+    await mentorModel.findByIdAndUpdate(menId, {
+      available: !menData.available,
     });
     res.json({ msg: "Availability changed successfully" });
   } catch (error) {
@@ -18,12 +18,12 @@ const changeAvailability = async (req, res) => {
   }
 };
 
-const doctorList = async (req, res) => {
+const mentorList = async (req, res) => {
   try {
-    const doctors = await doctorModel.find({}).select(["-password", "-email"]);
+    const mentors = await mentorModel.find({}).select(["-password", "-email"]);
     res.json({
       success: true,
-      doctors,
+      mentors,
     });
   } catch (error) {
     console.error(error.message);
@@ -31,20 +31,20 @@ const doctorList = async (req, res) => {
   }
 };
 
-// api for doctor login
+// api for mentor login
 
-const loginDoctor = async (req, res) => {
+const loginMentor = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const doctor = await doctorModel.findOne({ email });
+    const mentor = await mentorModel.findOne({ email });
 
-    if (!doctor) {
+    if (!mentor) {
       return res.json({ success: false, message: "Invalid Credentials" });
     }
 
-    const isMatch = await bcrypt.compare(password, doctor.password);
+    const isMatch = await bcrypt.compare(password, mentor.password);
     if (isMatch) {
-      const token = jwt.sign({ id: doctor._id }, process.env.JWT_SECRET);
+      const token = jwt.sign({ id: mentor._id }, process.env.JWT_SECRET);
       res.json({ success: true, token });
     } else {
       return res.json({ success: false, message: "Invalid Credentials" });
@@ -54,11 +54,11 @@ const loginDoctor = async (req, res) => {
   }
 };
 
-// api to get doctor appointments for doctor panel
-const appointmentsDoctor = async (req, res) => {
+// api to get mentor appointments for mentor panel
+const appointmentsMentor = async (req, res) => {
   try {
-    const { docId } = req.body;
-    const appointments = await appointmentModel.find({ docId });
+    const { menId } = req.body;
+    const appointments = await appointmentModel.find({ menId });
     res.json({ success: true, appointments });
   } catch (error) {
     res.status(500).json({ msg: error.message });
@@ -68,10 +68,10 @@ const appointmentsDoctor = async (req, res) => {
 // api to mark appointment completed
 const appointmentComplete = async () => {
   try {
-    const { docId, appointmentId } = req.body;
+    const { menId, appointmentId } = req.body;
     const appointmentData = appointmentModel.findById(appointmentId);
 
-    if (appointmentData && appointmentData.doId == docId) {
+    if (appointmentData && appointmentData.menId == menId) {
       await appointmentModel.findByIdAndUpdate(appointmentId, {
         isCompleted: true,
       });
@@ -90,13 +90,13 @@ const appointmentComplete = async () => {
   }
 };
 
-// api to cancel appointment for doctor panel
+// api to cancel appointment for mentor panel
 const appointmentCancel = async () => {
   try {
-    const { docId, appointmentId } = req.body;
+    const { menId, appointmentId } = req.body;
     const appointmentData = appointmentModel.findById(appointmentId);
 
-    if (appointmentData && appointmentData.doId == docId) {
+    if (appointmentData && appointmentData.menId == menId) {
       await appointmentModel.findByIdAndUpdate(appointmentId, {
         cancelled: true,
       });
@@ -115,12 +115,12 @@ const appointmentCancel = async () => {
   }
 };
 
-// api to get dashboard data for doctor panel
+// api to get dashboard data for mentor panel
 
-const doctorDashboard = async (req, res) => {
+const mentorDashboard = async (req, res) => {
   try {
-    const { docId } = req.body;
-    const appointments = await appointmentModel.find({ docId });
+    const { menId } = req.body;
+    const appointments = await appointmentModel.find({ menId });
 
     let earnings = 0;
     appointments.map((item) => {
@@ -128,16 +128,16 @@ const doctorDashboard = async (req, res) => {
         earnings += item.amount;
       }
     });
-    let patients = [];
+    let students = [];
     appointments.map((item) => {
-      if (patients.includes(item.userId)) {
-        patients.push(item.userId);
+      if (students.includes(item.userId)) {
+        students.push(item.userId);
       }
     });
     const dashData = {
       earnings,
       appointments: appointments.length,
-      patients: patients.length,
+      students: students.length,
       latestAppointments: appointments.reverse().slice(0, 5),
     };
     res.json({ success: true, dashData });
@@ -146,22 +146,22 @@ const doctorDashboard = async (req, res) => {
   }
 };
 
-//api to get doctor profile for doctor panel
-const doctorProfile = async (req, res) => {
+//api to get mentor profile for mentor panel
+const mentorProfile = async (req, res) => {
   try {
-    const { docId } = req.body;
-    const profileData = await doctorModel.findById(docId).select("-password");
+    const { menId } = req.body;
+    const profileData = await mentorModel.findById(menId).select("-password");
     res.json({ success: true, profileData });
   } catch (error) {
     return res.status(500).json({ msg: error.message });
   }
 };
 
-//api to update profile data from doctor panel
-const updateDoctorProfile = async (req, res) => {
+//api to update profile data from mentor panel
+const updateMentorProfile = async (req, res) => {
   try {
-    const { docId, fees, address, available } = req.body;
-    await doctorModel.findByIdAndUpdate(docId, { fees, address, avvailable });
+    const { menId, fees, address, available } = req.body;
+    await mentorModel.findByIdAndUpdate(menId, { fees, address, avvailable });
     res.json({ success: true, message: "Profile Updated" });
   } catch (error) {
     return res.status(500).json({ msg: error.message });
@@ -169,12 +169,12 @@ const updateDoctorProfile = async (req, res) => {
 };
 export {
   changeAvailability,
-  doctorList,
-  loginDoctor,
-  appointmentsDoctor,
+  mentorList,
+  loginMentor,
+  appointmentsMentor,
   appointmentCancel,
   appointmentComplete,
-  doctorDashboard,
-  doctorProfile,
-  updateDoctorProfile,
+  mentorDashboard,
+  mentorProfile,
+  updateMentorProfile,
 };
