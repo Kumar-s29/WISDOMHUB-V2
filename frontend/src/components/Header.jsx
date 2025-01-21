@@ -17,7 +17,7 @@ const Header = () => {
             schedule your session hassie-free.
           </p>
           <a
-            href=""
+            href="#speciality"
             className=" flex items-center gap-2 bg-white px-8 py-3 rounded-3xl text-gray-600 text-sm m-auto md:m-0 hover:scale-105 transition-all duration-300"
           >
             Book Session
