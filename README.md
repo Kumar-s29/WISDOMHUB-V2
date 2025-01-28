@@ -1,1 +1,1 @@
-# WISDOM-HUB
+# WISDOM-HUB full stack project
