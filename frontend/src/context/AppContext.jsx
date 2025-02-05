@@ -58,6 +58,7 @@ const AppContextProvider = ({ children }) => {
     userData,
     setUserData,
     loadUserProfileData,
+    getMentorsData,
     // Provide mentors in the context
   };
   useEffect(() => {
