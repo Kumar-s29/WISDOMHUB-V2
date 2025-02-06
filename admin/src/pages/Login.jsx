@@ -3,6 +3,7 @@ import { assets } from "../assets/assets";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { AdminContext } from "../context/AdminContext";
+import { MentorContext } from "../context/MentorContext";
 
 const Login = () => {
   const [state, setState] = useState("Admin");
@@ -11,6 +12,7 @@ const Login = () => {
 
   // Corrected the context destructuring
   const { setAToken, backendUrl } = useContext(AdminContext);
+  const { setDToken } = useContext(MentorContext);
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
@@ -23,6 +25,18 @@ const Login = () => {
         if (data.success) {
           localStorage.setItem("aToken", data.token);
           setAToken(data.token);
+        } else {
+          toast.error(data.message);
+        }
+      } else {
+        const { data } = await axios.post(`${backendUrl}mentor/login`, {
+          email,
+          password,
+        });
+        if (data.success) {
+          localStorage.setItem("dToken", data.token);
+          setDToken(data.token);
+          console.log(data.token);
         } else {
           toast.error(data.message);
         }

@@ -10,10 +10,16 @@ import Dashboard from "./pages/Admin/Dashboard";
 import AllAppointments from "./pages/Admin/AllAppointments";
 import AddMentor from "./pages/Admin/AddMentor";
 import MentorsList from "./pages/Admin/MentorsList";
+import { MentorContext } from "./context/MentorContext";
+import MentorDashboard from "./pages/Mentor/MentorDashboard";
+import MentorAppointments from "./pages/Mentor/MentorAppointments";
+import MentorProfile from "./pages/Mentor/MentorProfile";
 const App = () => {
-  const { aToken } = useContext(AdminContext); // Destructure 'aToken' from context
+  const { aToken } = useContext(AdminContext);
+  // Destructure 'aToken' from context
+  const { dToken } = useContext(MentorContext);
 
-  return aToken ? (
+  return aToken || dToken ? (
     <div className="bg-[#F8F9F0]">
       <ToastContainer />
       <Navbar />
@@ -21,11 +27,16 @@ const App = () => {
         {/* Sidebar */}
         {<Sidebar />}
         <Routes>
+          {/* Admin Route */}
           <Route path="/" element={<div></div>} />
           <Route path="/admin-dashboard" element={<Dashboard />} />
           <Route path="/all-apponitments" element={<AllAppointments />} />
           <Route path="/add-mentor" element={<AddMentor />} />
           <Route path="mentor-list" element={<MentorsList />} />
+          {/* Mentor Route */}
+          <Route path="/mentor-dashboard" element={<MentorDashboard />} />
+          <Route path="/mentor-appointments" element={<MentorAppointments />} />
+          <Route path="/mentor-profile" element={<MentorProfile />} />
         </Routes>
       </div>
 

@@ -10,6 +10,8 @@ const AdminContextProvider = ({ children }) => {
   // State for managing admin token
   const [aToken, setAToken] = useState(localStorage.getItem("aToken") || "");
   const [doctors, setDoctors] = useState([]);
+  const [appointments, setAppointments] = useState([]);
+  const [dashData, setDashData] = useState(false);
 
   // Environment variable for backend URL
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
@@ -60,6 +62,73 @@ const AdminContextProvider = ({ children }) => {
       toast.error("An error occurred. Please try again later.");
     }
   };
+
+  const getAllappointments = async () => {
+    try {
+      const { data } = await axios.get(
+        `${backendUrl}/api/admin/appointments`,
+
+        {
+          headers: {
+            Authorization: `Bearer ${aToken}`,
+          },
+        }
+      );
+
+      if (data.success) {
+        setAppointments(data.appointments);
+        console.log(data.appointments);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error(error.message);
+    }
+  };
+
+  const cancelAppointment = async (appointmentId) => {
+    try {
+      const { data } = await axios.post(
+        `${backendUrl}/api/admin/cancel-appointment`,
+        { appointmentId },
+        {
+          headers: {
+            Authorization: `Bearer ${aToken}`,
+          },
+        }
+      );
+
+      if (data.success) {
+        toast.success(data.message);
+        getAllappointments();
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error(error.message);
+    }
+  };
+
+  const getDashData = async () => {
+    try {
+      const { data } = await axios.get(backendUrl + "/api/admin/dashboard", {
+        headers: {
+          aToken,
+        },
+      });
+      if (data.success) {
+        setDashData(data.dashData);
+        console.log(data.dashData);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("An error occurred. Please try again later.", error.message);
+    }
+  };
   // Value to provide via context
   const value = {
     aToken,
@@ -68,6 +137,12 @@ const AdminContextProvider = ({ children }) => {
     doctors,
     getAllMentors,
     changeAvailability,
+    appointments,
+    setAppointments,
+    getAllappointments,
+    cancelAppointment,
+    dashData,
+    getDashData,
   };
 
   return (
