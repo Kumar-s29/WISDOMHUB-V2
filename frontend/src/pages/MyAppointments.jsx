@@ -3,7 +3,7 @@ import { AppContext } from "../context/AppContext";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { get } from "mongoose";
-
+import { useNavigate } from "react-router-dom";
 const MyAppointments = () => {
   const { backendUrl, token, getMentorsData } = useContext(AppContext);
 
@@ -25,6 +25,7 @@ const MyAppointments = () => {
     "Dec",
   ];
 
+  const navigate = useNavigate();
   const slotDateFormat = (slotDate) => {
     const dateArray = slotDate.split("_");
     return (
@@ -65,7 +66,8 @@ const MyAppointments = () => {
       if (data.success) {
         toast.success(data.message);
         getUserAppointments();
-        getMentorsData();
+        navigate("/my-appointments");
+        // getMentorsData();
       } else {
         toast.error(data.message);
       }
@@ -86,6 +88,28 @@ const MyAppointments = () => {
       reciept: order.reciept,
       handler: async (response) => {
         console.log(response);
+
+        try {
+          const { data } = await axios.post(
+            backendUrl + "/api/user/verifyRozorpay",
+            response,
+            {
+              headers: {
+                token,
+              },
+            }
+          );
+          if (data.success) {
+            toast.success(data.message);
+            getUserAppointments();
+            getMentorsData();
+          } else {
+            toast.error(data.message);
+          }
+        } catch (error) {
+          console.log(error);
+          toast.error(error.message);
+        }
       },
     };
     const rzp = new window.Razorpay(options);
@@ -151,7 +175,12 @@ const MyAppointments = () => {
             </div>
             <div></div>
             <div className="flex flex-col gap-2 justify-end">
-              {item.cancelled && (
+              {!item.cancelled && item.payment && (
+                <button className="sm:min-w-48 py-2 border rounded text-stone-500 bg-indigo-50">
+                  Paid
+                </button>
+              )}
+              {item.cancelled && !item.payment && (
                 <button
                   onClick={() => appointmentRazorpay(item._id)}
                   className="text-sm text-stone-500 text-center sm:min-w-48 py-2 border hover:bg-primary hover:text-white transition-all duration-300 "
