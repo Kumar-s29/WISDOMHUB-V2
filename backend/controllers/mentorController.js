@@ -66,7 +66,7 @@ const appointmentsMentor = async (req, res) => {
 };
 
 // api to mark appointment completed
-const appointmentComplete = async () => {
+const appointmentComplete = async (req, res) => {
   try {
     const { menId, appointmentId } = req.body;
     const appointmentData = appointmentModel.findById(appointmentId);
@@ -91,7 +91,7 @@ const appointmentComplete = async () => {
 };
 
 // api to cancel appointment for mentor panel
-const appointmentCancel = async () => {
+const appointmentCancel = async (req, res) => {
   try {
     const { menId, appointmentId } = req.body;
     const appointmentData = appointmentModel.findById(appointmentId);

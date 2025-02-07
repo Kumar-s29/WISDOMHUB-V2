@@ -12,6 +12,10 @@ const MentorContextProvider = ({ children }) => {
   );
   const [appointments, setAppointments] = useState([]);
 
+  const [dashData, setDashData] = useState(false);
+
+  const [profileData, setProfileData] = useState(false);
+
   const getAppointments = async () => {
     try {
       const { data } = await axios.get(
@@ -23,8 +27,100 @@ const MentorContextProvider = ({ children }) => {
         }
       );
       if (data.success) {
-        setAppointments(data.appointments.reverese());
+        setAppointments(data.appointment);
         console.log(data.appointments.reverese());
+      } else {
+        console.log(data.message);
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    }
+  };
+
+  const completeAppointment = async (appointmentId) => {
+    try {
+      const { data } = await axios.post(
+        `${backendUrl}/api/mentor/complete-appointment`,
+        {
+          appointmentId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${dToken}`,
+          },
+        }
+      );
+      if (data.success) {
+        toast.success(data.message);
+        getAppointments();
+      } else {
+        console.log(data.message);
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    }
+  };
+
+  const cancelAppointment = async (appointmentId) => {
+    try {
+      const { data } = await axios.post(
+        `${backendUrl}/api/mentor/cancel-appointment`,
+        {
+          appointmentId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${dToken}`,
+          },
+        }
+      );
+      if (data.success) {
+        toast.success(data.message);
+        getAppointments();
+      } else {
+        console.log(data.message);
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    }
+  };
+  const getDashData = async () => {
+    try {
+      const { data } = await axios.get(`${backendUrl}/api/mentor/dashboard`, {
+        headers: {
+          Authorization: `Bearer ${dToken}`,
+        },
+      });
+      if (data.success) {
+        console.log(data.dashData);
+
+        setDashData(data.dashData);
+      } else {
+        console.log(data.message);
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    }
+  };
+  const getProfileData = async () => {
+    try {
+      const { data } = await axios.get(`${backendUrl}/api/mentor/profile`, {
+        headers: {
+          Authorization: `Bearer ${dToken}`,
+        },
+      });
+      if (data.success) {
+        console.log(data.profileData);
+
+        setProfileData(data.profileData);
       } else {
         console.log(data.message);
         toast.error(data.message);
@@ -41,6 +137,14 @@ const MentorContextProvider = ({ children }) => {
     appointments,
     setAppointments,
     getAppointments,
+    completeAppointment,
+    cancelAppointment,
+    dashData,
+    setDashData,
+    getDashData,
+    profileData,
+    setProfileData,
+    getProfileData,
   };
   return (
     <MentorContext.Provider value={value}>{children}</MentorContext.Provider>
