@@ -1,12 +1,11 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../context/AppContext";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { get } from "mongoose";
 import { useNavigate } from "react-router-dom";
+
 const MyAppointments = () => {
   const { backendUrl, token, getMentorsData } = useContext(AppContext);
-
   const [appointments, setAppointments] = useState([]);
 
   const months = [
@@ -26,18 +25,16 @@ const MyAppointments = () => {
   ];
 
   const navigate = useNavigate();
+
   const slotDateFormat = (slotDate) => {
     const dateArray = slotDate.split("_");
-    return (
-      dateArray[0] + " " + months[Number(dateArray[1])] + " " + dateArray[2]
-    );
+    return `${dateArray[0]} ${months[Number(dateArray[1])]} ${dateArray[2]}`;
   };
+
   const getUserAppointments = async () => {
     try {
       const { data } = await axios.get(`${backendUrl}/api/user/appointments`, {
-        headers: {
-          token,
-        },
+        headers: { token },
       });
       if (data.success) {
         setAppointments(data.appointments.reverse());
@@ -46,7 +43,7 @@ const MyAppointments = () => {
       }
     } catch (error) {
       console.error("Error fetching appointments:", error);
-      toast.error("Failed to fetch appointments.", error.message);
+      toast.error("Failed to fetch appointments.");
     }
   };
 
@@ -54,26 +51,19 @@ const MyAppointments = () => {
     try {
       const { data } = await axios.post(
         `${backendUrl}/api/user/cancel-appointment`,
-        {
-          appointmentId,
-        },
-        {
-          headers: {
-            token,
-          },
-        }
+        { appointmentId },
+        { headers: { token } }
       );
       if (data.success) {
         toast.success(data.message);
         getUserAppointments();
         navigate("/my-appointments");
-        // getMentorsData();
       } else {
         toast.error(data.message);
       }
     } catch (error) {
       console.error("Error cancelling appointment:", error);
-      toast.error("Failed to cancel appointment.", error.message);
+      toast.error("Failed to cancel appointment.");
     }
   };
 
@@ -85,19 +75,13 @@ const MyAppointments = () => {
       name: "Mentor App",
       description: "Payment for appointment",
       order_id: order.id,
-      reciept: order.reciept,
+      receipt: order.receipt,
       handler: async (response) => {
-        console.log(response);
-
         try {
           const { data } = await axios.post(
-            backendUrl + "/api/user/verifyRozorpay",
+            `${backendUrl}/api/user/verifyRozorpay`,
             response,
-            {
-              headers: {
-                token,
-              },
-            }
+            { headers: { token } }
           );
           if (data.success) {
             toast.success(data.message);
@@ -107,7 +91,7 @@ const MyAppointments = () => {
             toast.error(data.message);
           }
         } catch (error) {
-          console.log(error);
+          console.error(error);
           toast.error(error.message);
         }
       },
@@ -115,24 +99,22 @@ const MyAppointments = () => {
     const rzp = new window.Razorpay(options);
     rzp.open();
   };
+
   const appointmentRazorpay = async (appointmentId) => {
     try {
       const { data } = await axios.post(
-        backendUrl + "/api/user/payment-razorpay",
-        {
-          appointmentId,
-        }
+        `${backendUrl}/api/user/payment-razorpay`,
+        { appointmentId }
       );
       if (data.success) {
-        console.log(data.order);
         initPay(data.order);
       }
     } catch (error) {
-      console.log(error);
-
+      console.error(error);
       toast.error(error.message);
     }
   };
+
   useEffect(() => {
     if (token) {
       getUserAppointments();
@@ -152,7 +134,7 @@ const MyAppointments = () => {
           >
             <div>
               <img
-                className="w-32 bg-indigo-50 "
+                className="w-32 bg-indigo-50"
                 src={item.docData.image}
                 alt=""
               />
@@ -169,30 +151,27 @@ const MyAppointments = () => {
                 <span className="text-sm text-neutral-700 font-medium">
                   Date & Time:
                 </span>{" "}
-                {slotDateFormat(item.slotDate)} |{" "}
-                {slotDateFormat(item.slotTime)}
+                {slotDateFormat(item.slotDate)} | {item.slotTime}
               </p>
             </div>
-            <div></div>
             <div className="flex flex-col gap-2 justify-end">
               {!item.cancelled && item.payment && !item.isCompleted && (
                 <button className="sm:min-w-48 py-2 border rounded text-stone-500 bg-indigo-50">
                   Paid
                 </button>
               )}
-              {item.cancelled && !item.payment && !item.isCompleted && (
+              {!item.cancelled && !item.payment && !item.isCompleted && (
                 <button
                   onClick={() => appointmentRazorpay(item._id)}
-                  className="text-sm text-stone-500 text-center sm:min-w-48 py-2 border hover:bg-primary hover:text-white transition-all duration-300 "
+                  className="text-sm text-stone-500 text-center sm:min-w-48 py-2 border hover:bg-primary hover:text-white transition-all duration-300"
                 >
                   Pay Online
                 </button>
               )}
-
-              {item.cancelled && !item.isCompleted && (
+              {!item.cancelled && !item.isCompleted && (
                 <button
                   onClick={() => cancelAppointment(item._id)}
-                  className="text-sm text-stone-500 text-center sm:min-w-48 py-2 border  hover:bg-red-600 hover:text-white transition-all duration-300 "
+                  className="text-sm text-stone-500 text-center sm:min-w-48 py-2 border hover:bg-red-600 hover:text-white transition-all duration-300"
                 >
                   Cancel appointment
                 </button>
