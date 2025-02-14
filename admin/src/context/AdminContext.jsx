@@ -9,14 +9,14 @@ export const AdminContext = createContext();
 const AdminContextProvider = ({ children }) => {
   // State for managing admin token
   const [aToken, setAToken] = useState(localStorage.getItem("aToken") || "");
-  const [doctors, setDoctors] = useState([]);
+  const [mentors, setMentors] = useState([]);
   const [appointments, setAppointments] = useState([]);
   const [dashData, setDashData] = useState(false);
 
   // Environment variable for backend URL
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
-  const getAllMentors = async () => {
+  const getAllmentors = async () => {
     try {
       const { data } = await axios.post(
         `${backendUrl}admin/all-mentors`,
@@ -29,7 +29,7 @@ const AdminContextProvider = ({ children }) => {
       );
 
       if (data.success) {
-        setDoctors(data.doctors);
+        setMentors(data.doctors);
         console.log(data.doctors);
       } else {
         toast.error(data.message);
@@ -53,7 +53,7 @@ const AdminContextProvider = ({ children }) => {
       );
       if (data.success) {
         toast.success(data.message);
-        getAllMentors();
+        getAllmentors();
       } else {
         toast.error(data.message);
       }
@@ -134,8 +134,8 @@ const AdminContextProvider = ({ children }) => {
     aToken,
     setAToken,
     backendUrl,
-    doctors,
-    getAllMentors,
+    mentors,
+    getAllmentors,
     changeAvailability,
     appointments,
     setAppointments,

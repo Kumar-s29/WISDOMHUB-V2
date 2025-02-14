@@ -20,12 +20,12 @@ const Dashboard = () => {
       <div className="m-5">
         <div className="flex flex-wrap gap-2">
           <div className="flex items-center gap-2 bg-white p-4 min-w-52 rounded border-2 border-gray-100 cursor-pointer hover:scale-105 transition-all">
-            <img className="w-14" src={assets.doctor_icon} alt="" />
+            <img className="w-14" src={assets.mentor_icon} alt="" />
             <div>
               <p className="text-xl font-semibold text-gray-600 ">
-                {dashData.doctors}
+                {dashData.mentors}
               </p>
-              <p className="text-gray-400">Doctors</p>
+              <p className="text-gray-400">mentors</p>
             </div>
           </div>
           <div className="flex items-center gap-2 bg-white p-4 min-w-52 rounded border-2 border-gray-100 cursor-pointer hover:scale-105 transition-all">
@@ -38,12 +38,12 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="flex items-center gap-2 bg-white p-4 min-w-52 rounded border-2 border-gray-100 cursor-pointer hover:scale-105 transition-all">
-            <img className="w-14" src={assets.patients_icon} alt="" />
+            <img className="w-14" src={assets.students_icon} alt="" />
             <div>
               <p className="text-xl font-semibold text-gray-600 ">
-                {dashData.patients}
+                {dashData.students}
               </p>
-              <p className="text-gray-400">Patients</p>
+              <p className="text-gray-400">students</p>
             </div>
           </div>
         </div>
@@ -64,12 +64,12 @@ const Dashboard = () => {
                 >
                   <img
                     className="rounded-full w-10"
-                    src={item.docData.image}
+                    src={item.menData.image}
                     alt=""
                   />
                   <div className="flex-1 text-sm">
                     <p className="text-gray-800 font-medium">
-                      {item.docData.name}
+                      {item.menData.name}
                     </p>
                     <p className="text-gray-600">
                       {slotDateFormat(item.slotDate)}

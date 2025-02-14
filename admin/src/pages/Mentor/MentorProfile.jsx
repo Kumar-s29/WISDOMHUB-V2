@@ -5,7 +5,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const MentorProfile = () => {
-  const { dToken, profileData, setProfileData, getProfileData, backendUrl } =
+  const { mToken, profileData, setProfileData, getProfileData, backendUrl } =
     useContext(MentorContext);
 
   const { currency } = useContext(AppContext);
@@ -23,7 +23,7 @@ const MentorProfile = () => {
         backendUrl + "/api/mentor/update-profile",
         updateData,
         {
-          headers: dToken,
+          headers: mToken,
         }
       );
       if (data.success) {
@@ -40,10 +40,10 @@ const MentorProfile = () => {
   };
 
   useEffect(() => {
-    if (dToken) {
+    if (mToken) {
       getProfileData();
     }
-  }, [dToken]);
+  }, [mToken]);
   return (
     profileData && (
       <div>

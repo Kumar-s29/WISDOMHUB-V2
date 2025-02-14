@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { doctors } from "../assets/assets";
+import { mentors } from "../assets/assets";
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -54,7 +54,6 @@ const AppContextProvider = ({ children }) => {
     token,
     setToken,
     backendUrl,
-    doctors,
     userData,
     setUserData,
     loadUserProfileData,

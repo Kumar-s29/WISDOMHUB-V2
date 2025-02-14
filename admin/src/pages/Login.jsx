@@ -12,7 +12,7 @@ const Login = () => {
 
   // Corrected the context destructuring
   const { setAToken, backendUrl } = useContext(AdminContext);
-  const { setDToken } = useContext(MentorContext);
+  const { setMToken } = useContext(MentorContext);
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
@@ -35,7 +35,7 @@ const Login = () => {
         });
         if (data.success) {
           localStorage.setItem("dToken", data.token);
-          setDToken(data.token);
+          setMToken(data.token);
           console.log(data.token);
         } else {
           toast.error(data.message);

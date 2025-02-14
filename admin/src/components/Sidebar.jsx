@@ -5,7 +5,7 @@ import { assets } from "../assets/assets";
 import { MentorContext } from "../context/MentorContext";
 const Sidebar = () => {
   const { aToken } = useContext(AdminContext);
-  const { dToken } = useContext(MentorContext);
+  const { mToken } = useContext(MentorContext);
   return (
     <div className="min-h-screen bg-white border-r">
       {aToken && (
@@ -56,7 +56,7 @@ const Sidebar = () => {
           </NavLink>
         </ul>
       )}
-      {dToken && (
+      {mToken && (
         <ul className="text-[#515151] mt-5">
           <NavLink
             className={({ isActive }) =>

@@ -6,26 +6,26 @@ const Mentors = () => {
   const { speciality } = useParams();
   const [filterMen, setFilterMen] = useState([]);
   const [showFilter, setShowFilter] = useState(false);
-  const { doctors } = useContext(AppContext);
+  const { mentors } = useContext(AppContext);
   const navigate = useNavigate();
 
   const applyFilter = () => {
     if (speciality) {
-      setFilterMen(doctors.filter((item) => item.speciality === speciality));
+      setFilterMen(mentors.filter((item) => item.speciality === speciality));
     } else {
-      setFilterMen(doctors);
+      setFilterMen(mentors);
     }
   };
 
   useEffect(() => {
-    if (doctors) {
+    if (mentors) {
       applyFilter();
     }
-  }, [speciality, doctors]);
+  }, [speciality, mentors]);
 
   return (
     <div>
-      <p className="text-gray-600">Browse through the mentors' specialists.</p>
+      <p className="text-gray-600">Browse through the mentors specialists.</p>
       <div className="flex flex-col sm:flex-row items-start gap-5 mt-5">
         <button
           className={`py-1 px-3 border rounded text-sm transition-all sm:hidden ${
@@ -41,12 +41,12 @@ const Mentors = () => {
           }`}
         >
           {[
-            { label: "Technology & IT", value: "General physician" },
-            { label: "Health & Wellness", value: "Gynecologist" },
-            { label: "Education", value: "Dermatologist" },
-            { label: "Career Development", value: "Pediatrician" },
-            { label: "Arts & Creativity", value: "Neurologist" },
-            { label: "Entrepreneurship", value: "Gastroenterologist" },
+            { label: "Technology & IT", value: "Technology & IT" },
+            { label: "Health & Wellness", value: "Health & Wellness" },
+            { label: "Education", value: "Education" },
+            { label: "Career Development", value: "Career Development" },
+            { label: "Arts & Creativity", value: "Arts & Creativity" },
+            { label: "Entrepreneurship", value: "Entrepreneurship" },
           ].map((category) => (
             <p
               key={category.value}

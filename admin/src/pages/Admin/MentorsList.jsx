@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { AdminContext } from "../../context/AdminContext";
 
 const MentorsList = () => {
-  const { doctors, getAllMentors, aToken, changeAvailability } =
+  const { mentors, getAllMentors, aToken, changeAvailability } =
     useContext(AdminContext);
   4;
 
@@ -15,7 +15,7 @@ const MentorsList = () => {
     <div className="m-5 max-h-[90vh] overflow-y-scroll">
       <h1 className="text-lg font-medium">All Mentors</h1>
       <div className="w-full flex flex-wrap gap-4 pt-5 gap-y-6">
-        {doctors.map((item, index) => {
+        {mentors.map((item, index) => {
           <div
             className="border border-indigo-200 rounded-xl max-w-56 overflow-hidden cursor-pointer"
             key={index}

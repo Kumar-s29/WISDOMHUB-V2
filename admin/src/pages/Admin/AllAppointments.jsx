@@ -24,7 +24,7 @@ const AllAppointments = () => {
           <p>Patient</p>
           <p>Age</p>
           <p>Date & Time</p>
-          <p>Doctor</p>
+          <p>Mentor</p>
           <p>Fees</p>
           <p>Actions</p>
         </div>
@@ -49,10 +49,10 @@ const AllAppointments = () => {
             <div className="flex items-center gap-2">
               <img
                 className="w-8 rounded-full bg-gray-200"
-                src={item.docData.image}
+                src={item.menData.image}
                 alt=""
               />
-              <p>{item.docData.name}</p>
+              <p>{item.menData.name}</p>
             </div>
             <p>
               {currency}

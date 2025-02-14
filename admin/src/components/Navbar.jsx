@@ -5,14 +5,14 @@ import { useNavigate } from "react-router-dom";
 import { MentorContext } from "../context/MentorContext";
 const Navbar = () => {
   const { aToken, setAToken } = useContext(AdminContext);
-  const { dToken, setDToken } = useContext(MentorContext);
+  const { mToken, setMToken } = useContext(MentorContext);
   const navigate = useNavigate();
   const logout = () => {
     navigate("/");
     aToken && setAToken("");
     aToken && localStorage.removeItem("aToken");
-    dToken && setDToken("");
-    dToken && localStorage.removeItem("dToken");
+    mToken && setMToken("");
+    mToken && localStorage.removeItem("mToken");
   };
   return (
     <div className="flex justify-between items-center px-4 sm:px-10 py-3 border-b bg-white ">

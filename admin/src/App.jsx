@@ -17,9 +17,9 @@ import MentorProfile from "./pages/Mentor/MentorProfile";
 const App = () => {
   const { aToken } = useContext(AdminContext);
   // Destructure 'aToken' from context
-  const { dToken } = useContext(MentorContext);
+  const { mToken } = useContext(MentorContext);
 
-  return aToken || dToken ? (
+  return aToken || mToken ? (
     <div className="bg-[#F8F9F0]">
       <ToastContainer />
       <Navbar />

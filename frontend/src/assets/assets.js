@@ -1,10 +1,10 @@
-import appointment_img from "./appointment_img.png";
+import appointment_img from "./footer.webp";
 import header_img from "./header_img.png";
 import group_profiles from "./group_profiles.png";
 import profile_pic from "./profile_pic.png";
-import contact_image from "./contact_image.png";
-import about_image from "./about_image.png";
-import logo from "./logo.svg";
+import contact_image from "./contact_image.jpg";
+import about_image from "./about_image.jpg";
+import logo from "./admin_logo.png";
 import dropdown_icon from "./dropdown_icon.svg";
 import menu_icon from "./menu_icon.svg";
 import cross_icon from "./cross_icon.png";
@@ -15,33 +15,42 @@ import info_icon from "./info_icon.svg";
 import upload_icon from "./upload_icon.png";
 import stripe_logo from "./stripe_logo.png";
 import razorpay_logo from "./razorpay_logo.png";
-import doc1 from "./doc1.png";
-import doc2 from "./doc2.png";
-import doc3 from "./doc3.png";
-import doc4 from "./doc4.png";
-import doc5 from "./doc5.png";
-import doc6 from "./doc6.png";
-import doc7 from "./doc7.png";
-import doc8 from "./doc8.png";
-import doc9 from "./doc9.png";
-import doc10 from "./doc10.png";
-import doc11 from "./doc11.png";
-import doc12 from "./doc12.png";
-import doc13 from "./doc13.png";
-import doc14 from "./doc14.png";
-import doc15 from "./doc15.png";
-import Dermatologist from "./Dermatologist.svg";
-import Gastroenterologist from "./Gastroenterologist.svg";
-import General_physician from "./General_physician.svg";
-import Gynecologist from "./Gynecologist.svg";
-import Neurologist from "./Neurologist.svg";
-import Pediatricians from "./Pediatricians.svg";
 
+import ment1 from "./doc1.png";
+import ment2 from "./doc2.png";
+import ment3 from "./doc3.png";
+import ment4 from "./doc4.png";
+import ment5 from "./doc5.png";
+import ment6 from "./doc6.png";
+import ment7 from "./doc7.png";
+import ment8 from "./doc8.png";
+import ment9 from "./doc9.png";
+import ment10 from "./doc10.png";
+import ment11 from "./doc11.png";
+import ment12 from "./doc12.png";
+import ment13 from "./doc13.png";
+import ment14 from "./doc14.png";
+import ment15 from "./doc15.png";
+
+import it from "./it-department.png";
+// import Gastroenterologist from "./Gastroenterologist.svg";
+import General_physician from "./General_physician.svg";
+import businessman from "./businessman.png";
+// import Neurologist from "./Neurologist.svg";
+// import Pediatricians from "./Pediatricians.svg";
+import artist from "./artist.png";
+import career from "./career.png";
+import teacher from "./teacher.png";
 export const assets = {
+  it,
+  businessman,
   appointment_img,
   header_img,
+  career,
+  teacher,
   group_profiles,
   logo,
+  artist,
   chats_icon,
   verified_icon,
   info_icon,
@@ -56,258 +65,256 @@ export const assets = {
   stripe_logo,
   razorpay_logo,
 };
-
 export const specialityData = [
   {
-    speciality: "General physician",
+    speciality: "Technology & IT",
+    image: it,
+  },
+  {
+    speciality: "Health & Wellness",
     image: General_physician,
   },
   {
-    speciality: "Gynecologist",
-    image: Gynecologist,
+    speciality: "Education",
+    image: teacher,
   },
   {
-    speciality: "Dermatologist",
-    image: Dermatologist,
+    speciality: "Career Development",
+    image: career,
   },
   {
-    speciality: "Pediatricians",
-    image: Pediatricians,
+    speciality: "Arts & Creativity",
+    image: artist,
   },
   {
-    speciality: "Neurologist",
-    image: Neurologist,
-  },
-  {
-    speciality: "Gastroenterologist",
-    image: Gastroenterologist,
+    speciality: "Entrepreneurship",
+    image: businessman,
   },
 ];
-
-export const doctors = [
+export const mentors = [
   {
-    _id: "doc1",
-    name: "Dr. Richard James",
-    image: doc1,
-    speciality: "General physician",
-    degree: "MBBS",
-    experience: "4 Years",
+    _id: "ment1",
+    name: "John Doe",
+    image: ment1,
+    speciality: "Technology & IT",
+    expertise: "Full Stack Development",
+    experience: "6 Years",
     about:
-      "Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.",
-    fees: 50,
+      "John is a passionate software engineer specializing in web and mobile app development, helping individuals master modern tech stacks.",
+    fees: 100,
     address: {
-      line1: "17th Cross, Richmond",
-      line2: "Circle, Ring Road, London",
+      line1: "Tech Park, Silicon Valley",
+      line2: "California, USA",
     },
   },
   {
-    _id: "doc2",
-    name: "Dr. Emily Larson",
-    image: doc2,
-    speciality: "Gynecologist",
-    degree: "MBBS",
-    experience: "3 Years",
+    _id: "ment2",
+    name: "Dr. Emma Clarke",
+    image: ment2,
+    speciality: "Health & Wellness",
+    expertise: "Nutrition & Lifestyle",
+    experience: "8 Years",
     about:
-      "Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.",
+      "Dr. Emma is a certified nutritionist, guiding individuals on balanced diets and healthy living habits for overall well-being.",
+    fees: 80,
+    address: {
+      line1: "Wellness Street",
+      line2: "London, UK",
+    },
+  },
+  {
+    _id: "ment3",
+    name: "Michael Johnson",
+    image: ment3,
+    speciality: "Education",
+    expertise: "Mathematics & Science",
+    experience: "10 Years",
+    about:
+      "Michael is a dedicated educator, simplifying complex concepts in mathematics and science to help students excel in academics.",
+    fees: 50,
+    address: {
+      line1: "Academy Road",
+      line2: "New York, USA",
+    },
+  },
+  {
+    _id: "ment4",
+    name: "Sarah Williams",
+    image: ment4,
+    speciality: "Career Development",
+    expertise: "Resume Building & Interview Prep",
+    experience: "7 Years",
+    about:
+      "Sarah assists job seekers in crafting impactful resumes and preparing for interviews to land their dream jobs.",
+    fees: 70,
+    address: {
+      line1: "Career Hub",
+      line2: "Toronto, Canada",
+    },
+  },
+  {
+    _id: "ment5",
+    name: "Lucas Brown",
+    image: ment5,
+    speciality: "Arts & Creativity",
+    expertise: "Photography & Design",
+    experience: "5 Years",
+    about:
+      "Lucas is an artist and photographer, helping individuals unlock their creative potential in visual arts.",
     fees: 60,
     address: {
-      line1: "27th Cross, Richmond",
-      line2: "Circle, Ring Road, London",
+      line1: "Creative Alley",
+      line2: "Berlin, Germany",
     },
   },
   {
-    _id: "doc3",
-    name: "Dr. Sarah Patel",
-    image: doc3,
-    speciality: "Dermatologist",
-    degree: "MBBS",
-    experience: "1 Years",
+    _id: "ment6",
+    name: "Olivia Carter",
+    image: ment6,
+    speciality: "Entrepreneurship",
+    expertise: "Startup Growth & Business Strategies",
+    experience: "9 Years",
     about:
-      "Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.",
-    fees: 30,
+      "Olivia mentors aspiring entrepreneurs on launching and scaling successful businesses through strategic planning.",
+    fees: 90,
     address: {
-      line1: "37th Cross, Richmond",
-      line2: "Circle, Ring Road, London",
+      line1: "Startup Avenue",
+      line2: "San Francisco, USA",
     },
   },
   {
-    _id: "doc4",
-    name: "Dr. Christopher Lee",
-    image: doc4,
-    speciality: "Pediatricians",
-    degree: "MBBS",
-    experience: "2 Years",
+    _id: "ment7",
+    name: "David Anderson",
+    image: ment7,
+    speciality: "Technology & IT",
+    expertise: "Cybersecurity & Ethical Hacking",
+    experience: "7 Years",
     about:
-      "Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.",
-    fees: 40,
+      "David is an expert in cybersecurity, helping individuals and businesses secure their digital assets against cyber threats.",
+    fees: 95,
     address: {
-      line1: "47th Cross, Richmond",
-      line2: "Circle, Ring Road, London",
+      line1: "Cyber Hub",
+      line2: "Seattle, USA",
     },
   },
   {
-    _id: "doc5",
-    name: "Dr. Jennifer Garcia",
-    image: doc5,
-    speciality: "Neurologist",
-    degree: "MBBS",
-    experience: "4 Years",
+    _id: "ment8",
+    name: "Sophia Martinez",
+    image: ment8,
+    speciality: "Health & Wellness",
+    expertise: "Mental Health & Stress Management",
+    experience: "6 Years",
     about:
-      "Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.",
-    fees: 50,
+      "Sophia is a psychologist specializing in mental well-being, guiding individuals in managing stress and anxiety effectively.",
+    fees: 85,
     address: {
-      line1: "57th Cross, Richmond",
-      line2: "Circle, Ring Road, London",
+      line1: "Wellness Center",
+      line2: "Sydney, Australia",
     },
   },
   {
-    _id: "doc6",
-    name: "Dr. Andrew Williams",
-    image: doc6,
-    speciality: "Neurologist",
-    degree: "MBBS",
-    experience: "4 Years",
+    _id: "ment9",
+    name: "Robert Wilson",
+    image: ment9,
+    speciality: "Education",
+    expertise: "Physics & Engineering",
+    experience: "12 Years",
     about:
-      "Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.",
-    fees: 50,
-    address: {
-      line1: "57th Cross, Richmond",
-      line2: "Circle, Ring Road, London",
-    },
-  },
-  {
-    _id: "doc7",
-    name: "Dr. Christopher Davis",
-    image: doc7,
-    speciality: "General physician",
-    degree: "MBBS",
-    experience: "4 Years",
-    about:
-      "Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.",
-    fees: 50,
-    address: {
-      line1: "17th Cross, Richmond",
-      line2: "Circle, Ring Road, London",
-    },
-  },
-  {
-    _id: "doc8",
-    name: "Dr. Timothy White",
-    image: doc8,
-    speciality: "Gynecologist",
-    degree: "MBBS",
-    experience: "3 Years",
-    about:
-      "Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.",
+      "Robert is an experienced physics professor, making complex engineering concepts easy for students and professionals.",
     fees: 60,
     address: {
-      line1: "27th Cross, Richmond",
-      line2: "Circle, Ring Road, London",
+      line1: "STEM Academy",
+      line2: "Boston, USA",
     },
   },
   {
-    _id: "doc9",
-    name: "Dr. Ava Mitchell",
-    image: doc9,
-    speciality: "Dermatologist",
-    degree: "MBBS",
-    experience: "1 Years",
+    _id: "ment10",
+    name: "Emily Johnson",
+    image: ment10,
+    speciality: "Career Development",
+    expertise: "Public Speaking & Communication",
+    experience: "8 Years",
     about:
-      "Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.",
-    fees: 30,
+      "Emily coaches individuals on effective public speaking and communication skills for career growth and confidence building.",
+    fees: 75,
     address: {
-      line1: "37th Cross, Richmond",
-      line2: "Circle, Ring Road, London",
+      line1: "Leadership Hub",
+      line2: "Chicago, USA",
     },
   },
   {
-    _id: "doc10",
-    name: "Dr. Jeffrey King",
-    image: doc10,
-    speciality: "Pediatricians",
-    degree: "MBBS",
-    experience: "2 Years",
+    _id: "ment11",
+    name: "Daniel Kim",
+    image: ment11,
+    speciality: "Arts & Creativity",
+    expertise: "Music Production & Sound Design",
+    experience: "10 Years",
     about:
-      "Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.",
-    fees: 40,
+      "Daniel is a music producer helping aspiring artists learn the art of sound design and music composition.",
+    fees: 70,
     address: {
-      line1: "47th Cross, Richmond",
-      line2: "Circle, Ring Road, London",
+      line1: "Creative Beats Studio",
+      line2: "Los Angeles, USA",
     },
   },
   {
-    _id: "doc11",
-    name: "Dr. Zoe Kelly",
-    image: doc11,
-    speciality: "Neurologist",
-    degree: "MBBS",
-    experience: "4 Years",
+    _id: "ment12",
+    name: "Ava Patel",
+    image: ment12,
+    speciality: "Entrepreneurship",
+    expertise: "E-commerce & Digital Marketing",
+    experience: "7 Years",
     about:
-      "Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.",
-    fees: 50,
+      "Ava specializes in helping startups and businesses grow through effective e-commerce strategies and digital marketing techniques.",
+    fees: 90,
     address: {
-      line1: "57th Cross, Richmond",
-      line2: "Circle, Ring Road, London",
+      line1: "Business Innovation Hub",
+      line2: "Mumbai, India",
     },
   },
   {
-    _id: "doc12",
-    name: "Dr. Patrick Harris",
-    image: doc12,
-    speciality: "Neurologist",
-    degree: "MBBS",
-    experience: "4 Years",
+    _id: "ment13",
+    name: "Ethan Rodriguez",
+    image: ment13,
+    speciality: "Technology & IT",
+    expertise: "AI & Machine Learning",
+    experience: "9 Years",
     about:
-      "Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.",
-    fees: 50,
+      "Ethan is a data scientist guiding individuals on AI, machine learning, and automation technologies.",
+    fees: 110,
     address: {
-      line1: "57th Cross, Richmond",
-      line2: "Circle, Ring Road, London",
+      line1: "AI Research Lab",
+      line2: "Toronto, Canada",
     },
   },
   {
-    _id: "doc13",
-    name: "Dr. Chloe Evans",
-    image: doc13,
-    speciality: "General physician",
-    degree: "MBBS",
-    experience: "4 Years",
+    _id: "ment14",
+    name: "Isabella Chen",
+    image: ment14,
+    speciality: "Health & Wellness",
+    expertise: "Yoga & Holistic Healing",
+    experience: "5 Years",
     about:
-      "Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.",
-    fees: 50,
+      "Isabella is a certified yoga instructor promoting physical and mental well-being through holistic healing practices.",
+    fees: 65,
     address: {
-      line1: "17th Cross, Richmond",
-      line2: "Circle, Ring Road, London",
+      line1: "Zen Wellness Center",
+      line2: "Bali, Indonesia",
     },
   },
   {
-    _id: "doc14",
-    name: "Dr. Ryan Martinez",
-    image: doc14,
-    speciality: "Gynecologist",
-    degree: "MBBS",
-    experience: "3 Years",
+    _id: "ment15",
+    name: "William Thompson",
+    image: ment15,
+    speciality: "Education",
+    expertise: "History & Cultural Studies",
+    experience: "15 Years",
     about:
-      "Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.",
-    fees: 60,
+      "William is a historian who provides deep insights into world history and cultural developments over time.",
+    fees: 55,
     address: {
-      line1: "27th Cross, Richmond",
-      line2: "Circle, Ring Road, London",
-    },
-  },
-  {
-    _id: "doc15",
-    name: "Dr. Amelia Hill",
-    image: doc15,
-    speciality: "Dermatologist",
-    degree: "MBBS",
-    experience: "1 Years",
-    about:
-      "Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.",
-    fees: 30,
-    address: {
-      line1: "37th Cross, Richmond",
-      line2: "Circle, Ring Road, London",
+      line1: "Heritage Academy",
+      line2: "London, UK",
     },
   },
 ];

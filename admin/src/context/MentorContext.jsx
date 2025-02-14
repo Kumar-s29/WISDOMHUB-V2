@@ -7,8 +7,8 @@ export const MentorContext = createContext();
 const MentorContextProvider = ({ children }) => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
-  const [dToken, setDToken] = useState(
-    localStorage.getItem("dToken") ? localStorage.getItem("dToken") : ""
+  const [mToken, setMToken] = useState(
+    localStorage.getItem("mToken") ? localStorage.getItem("mToken") : ""
   );
   const [appointments, setAppointments] = useState([]);
 
@@ -22,7 +22,7 @@ const MentorContextProvider = ({ children }) => {
         `${backendUrl}/api/mentor/appointments`,
         {
           headers: {
-            Authorization: `Bearer ${dToken}`,
+            Authorization: `Bearer ${mToken}`,
           },
         }
       );
@@ -48,7 +48,7 @@ const MentorContextProvider = ({ children }) => {
         },
         {
           headers: {
-            Authorization: `Bearer ${dToken}`,
+            Authorization: `Bearer ${mToken}`,
           },
         }
       );
@@ -74,7 +74,7 @@ const MentorContextProvider = ({ children }) => {
         },
         {
           headers: {
-            Authorization: `Bearer ${dToken}`,
+            Authorization: `Bearer ${mToken}`,
           },
         }
       );
@@ -94,7 +94,7 @@ const MentorContextProvider = ({ children }) => {
     try {
       const { data } = await axios.get(`${backendUrl}/api/mentor/dashboard`, {
         headers: {
-          Authorization: `Bearer ${dToken}`,
+          Authorization: `Bearer ${mToken}`,
         },
       });
       if (data.success) {
@@ -114,7 +114,7 @@ const MentorContextProvider = ({ children }) => {
     try {
       const { data } = await axios.get(`${backendUrl}/api/mentor/profile`, {
         headers: {
-          Authorization: `Bearer ${dToken}`,
+          Authorization: `Bearer ${mToken}`,
         },
       });
       if (data.success) {
@@ -131,8 +131,8 @@ const MentorContextProvider = ({ children }) => {
     }
   };
   const value = {
-    dToken,
-    setDToken,
+    mToken,
+    setMToken,
     backendUrl,
     appointments,
     setAppointments,
