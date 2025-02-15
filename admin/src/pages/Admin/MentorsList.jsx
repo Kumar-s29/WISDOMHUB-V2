@@ -2,13 +2,13 @@ import React, { useContext, useEffect } from "react";
 import { AdminContext } from "../../context/AdminContext";
 
 const MentorsList = () => {
-  const { mentors, getAllMentors, aToken, changeAvailability } =
+  const { mentors, getAllmentors, aToken, changeAvailability } =
     useContext(AdminContext);
   4;
 
   useEffect(() => {
     if (aToken) {
-      getAllMentors();
+      getAllmentors();
     }
   }, [aToken]);
   return (

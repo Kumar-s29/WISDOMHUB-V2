@@ -18,14 +18,11 @@ const MentorContextProvider = ({ children }) => {
 
   const getAppointments = async () => {
     try {
-      const { data } = await axios.get(
-        `${backendUrl}/api/mentor/appointments`,
-        {
-          headers: {
-            Authorization: `Bearer ${mToken}`,
-          },
-        }
-      );
+      const { data } = await axios.get(`${backendUrl}mentor/appointments`, {
+        headers: {
+          Authorization: `Bearer ${mToken}`,
+        },
+      });
       if (data.success) {
         setAppointments(data.appointment);
         console.log(data.appointments.reverese());
@@ -42,7 +39,7 @@ const MentorContextProvider = ({ children }) => {
   const completeAppointment = async (appointmentId) => {
     try {
       const { data } = await axios.post(
-        `${backendUrl}/api/mentor/complete-appointment`,
+        `${backendUrl}mentor/complete-appointment`,
         {
           appointmentId,
         },
@@ -68,7 +65,7 @@ const MentorContextProvider = ({ children }) => {
   const cancelAppointment = async (appointmentId) => {
     try {
       const { data } = await axios.post(
-        `${backendUrl}/api/mentor/cancel-appointment`,
+        `${backendUrl}mentor/cancel-appointment`,
         {
           appointmentId,
         },
@@ -92,7 +89,7 @@ const MentorContextProvider = ({ children }) => {
   };
   const getDashData = async () => {
     try {
-      const { data } = await axios.get(`${backendUrl}/api/mentor/dashboard`, {
+      const { data } = await axios.get(`${backendUrl}mentor/dashboard`, {
         headers: {
           Authorization: `Bearer ${mToken}`,
         },
@@ -112,7 +109,7 @@ const MentorContextProvider = ({ children }) => {
   };
   const getProfileData = async () => {
     try {
-      const { data } = await axios.get(`${backendUrl}/api/mentor/profile`, {
+      const { data } = await axios.get(`${backendUrl}mentor/profile`, {
         headers: {
           Authorization: `Bearer ${mToken}`,
         },

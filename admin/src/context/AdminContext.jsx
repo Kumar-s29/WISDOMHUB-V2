@@ -66,7 +66,7 @@ const AdminContextProvider = ({ children }) => {
   const getAllappointments = async () => {
     try {
       const { data } = await axios.get(
-        `${backendUrl}/api/admin/appointments`,
+        `${backendUrl}admin/appointments`,
 
         {
           headers: {
@@ -90,7 +90,7 @@ const AdminContextProvider = ({ children }) => {
   const cancelAppointment = async (appointmentId) => {
     try {
       const { data } = await axios.post(
-        `${backendUrl}/api/admin/cancel-appointment`,
+        `${backendUrl}admin/cancel-appointment`,
         { appointmentId },
         {
           headers: {
@@ -113,7 +113,7 @@ const AdminContextProvider = ({ children }) => {
 
   const getDashData = async () => {
     try {
-      const { data } = await axios.get(backendUrl + "/api/admin/dashboard", {
+      const { data } = await axios.get(backendUrl + "admin/dashboard", {
         headers: {
           aToken,
         },
