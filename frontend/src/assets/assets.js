@@ -31,6 +31,13 @@ import ment12 from "./doc12.png";
 import ment13 from "./doc13.png";
 import ment14 from "./doc14.png";
 import ment15 from "./doc15.png";
+import ment16 from "./img1.png";
+import ment17 from "./img2.png";
+import ment18 from "./img3.png";
+import ment19 from "./img4.png";
+import ment20 from "./img5.png";
+import ment21 from "./img6.png";
+import ment22 from "./img7.png";
 
 import it from "./it-department.png";
 // import Gastroenterologist from "./Gastroenterologist.svg";
@@ -64,6 +71,13 @@ export const assets = {
   upload_icon,
   stripe_logo,
   razorpay_logo,
+  ment16,
+  ment17,
+  ment18,
+  ment19,
+  ment20,
+  ment21,
+  ment22,
 };
 export const specialityData = [
   {
@@ -95,7 +109,7 @@ export const mentors = [
   {
     _id: "ment1",
     name: "John Doe",
-    image: ment1,
+    image: ment16,
     speciality: "Technology & IT",
     expertise: "Full Stack Development",
     experience: "6 Years",
@@ -125,7 +139,7 @@ export const mentors = [
   {
     _id: "ment3",
     name: "Michael Johnson",
-    image: ment3,
+    image: ment17,
     speciality: "Education",
     expertise: "Mathematics & Science",
     experience: "10 Years",
@@ -140,7 +154,7 @@ export const mentors = [
   {
     _id: "ment4",
     name: "Sarah Williams",
-    image: ment4,
+    image: ment18,
     speciality: "Career Development",
     expertise: "Resume Building & Interview Prep",
     experience: "7 Years",
@@ -155,7 +169,7 @@ export const mentors = [
   {
     _id: "ment5",
     name: "Lucas Brown",
-    image: ment5,
+    image: ment19,
     speciality: "Arts & Creativity",
     expertise: "Photography & Design",
     experience: "5 Years",
@@ -170,7 +184,7 @@ export const mentors = [
   {
     _id: "ment6",
     name: "Olivia Carter",
-    image: ment6,
+    image: ment20,
     speciality: "Entrepreneurship",
     expertise: "Startup Growth & Business Strategies",
     experience: "9 Years",
@@ -185,7 +199,7 @@ export const mentors = [
   {
     _id: "ment7",
     name: "David Anderson",
-    image: ment7,
+    image: ment21,
     speciality: "Technology & IT",
     expertise: "Cybersecurity & Ethical Hacking",
     experience: "7 Years",
@@ -200,7 +214,7 @@ export const mentors = [
   {
     _id: "ment8",
     name: "Sophia Martinez",
-    image: ment8,
+    image: ment3,
     speciality: "Health & Wellness",
     expertise: "Mental Health & Stress Management",
     experience: "6 Years",
@@ -215,7 +229,7 @@ export const mentors = [
   {
     _id: "ment9",
     name: "Robert Wilson",
-    image: ment9,
+    image: ment22,
     speciality: "Education",
     expertise: "Physics & Engineering",
     experience: "12 Years",
@@ -230,7 +244,7 @@ export const mentors = [
   {
     _id: "ment10",
     name: "Emily Johnson",
-    image: ment10,
+    image: ment17,
     speciality: "Career Development",
     expertise: "Public Speaking & Communication",
     experience: "8 Years",
@@ -245,7 +259,7 @@ export const mentors = [
   {
     _id: "ment11",
     name: "Daniel Kim",
-    image: ment11,
+    image: ment18,
     speciality: "Arts & Creativity",
     expertise: "Music Production & Sound Design",
     experience: "10 Years",
@@ -260,7 +274,7 @@ export const mentors = [
   {
     _id: "ment12",
     name: "Ava Patel",
-    image: ment12,
+    image: ment20,
     speciality: "Entrepreneurship",
     expertise: "E-commerce & Digital Marketing",
     experience: "7 Years",
@@ -275,7 +289,7 @@ export const mentors = [
   {
     _id: "ment13",
     name: "Ethan Rodriguez",
-    image: ment13,
+    image: ment19,
     speciality: "Technology & IT",
     expertise: "AI & Machine Learning",
     experience: "9 Years",
@@ -290,7 +304,7 @@ export const mentors = [
   {
     _id: "ment14",
     name: "Isabella Chen",
-    image: ment14,
+    image: ment16,
     speciality: "Health & Wellness",
     expertise: "Yoga & Holistic Healing",
     experience: "5 Years",
@@ -305,7 +319,7 @@ export const mentors = [
   {
     _id: "ment15",
     name: "William Thompson",
-    image: ment15,
+    image: ment22,
     speciality: "Education",
     expertise: "History & Cultural Studies",
     experience: "15 Years",
