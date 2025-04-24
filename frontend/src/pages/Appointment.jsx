@@ -370,7 +370,7 @@ const Appointment = () => {
   }, [menInfo]);
 
   if (!menInfo) {
-    return <p>Doctor not found.</p>;
+    return <p>Mentor not found.</p>;
   }
 
   return (
